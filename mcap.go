@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"strconv"
 
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
@@ -17,13 +18,13 @@ const maxMessageSizeBytes int32 = 48 * 1000 * 1000
 // A super simple packet capture...
 // sudo setcap cap_net_raw,cap_net_admin=eip /usr/local/go/bin/go to give permission to 'lo' device.
 // or run tests as root - sudo /usr/local/go/bin/go.
-func Listen(ctx context.Context, key string, out chan bsoncore.Value) error {
+func Listen(ctx context.Context, key string, port int, out chan bsoncore.Value) error {
 	handle, err := pcap.OpenLive("lo", maxMessageSizeBytes, true, pcap.BlockForever)
 	if err != nil {
 		return err
 	}
 
-	filter := "tcp port 27017"
+	filter := "tcp port " + strconv.Itoa(port)
 	err = handle.SetBPFFilter(filter)
 	if err != nil {
 		return err
