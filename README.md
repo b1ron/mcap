@@ -9,7 +9,7 @@ func main() {
 	ch := make(chan bsoncore.Value)
 	go mcap.Listen(context.TODO(), "payload", 47019, ch)
 
-    // start decoding payloads...
-    payload := <-ch
+	// start decoding payloads...
+	payload := <-ch
 }
 ```
