@@ -3,7 +3,7 @@
 ### Example
 
 ```go
-// listen on port 27017 for key payload
+// listen on port 27017 for the key called payload
 func main() {
 	ctx := context.TODO()
 
