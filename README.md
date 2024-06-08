@@ -3,11 +3,11 @@
 ### Example
 
 ```go
-// listen on port 47019 for key payload
+// listen on port 27017 for key payload
 func main() {
 	// ignore errors for now.
 	ch := make(chan bsoncore.Value)
-	go mcap.Listen(context.TODO(), "payload", 47019, ch)
+	go mcap.Listen(context.TODO(), "payload", 27017, ch)
 
 	// start decoding payloads...
 	payload := <-ch
